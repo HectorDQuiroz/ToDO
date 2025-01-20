@@ -68,12 +68,12 @@ class TaskController extends Controller
             'notes'       => 'nullable|string', // Agrega validación para notes
         ]);
     
-        $task->update([
-            'description' => $request->description,
-            'priority'    => $request->priority,
-            'notes'       => $request->notes, // Actualiza las notas
-        ]);
-
+        $task->description = $request->description;
+        $task->priority = $request->priority;
+        $task->notes = $request->notes; 
+    
+        $task->save();
+    
         return redirect()->route('tasks.index')->with('success', 'Tarea actualizada exitosamente.');
     }
 

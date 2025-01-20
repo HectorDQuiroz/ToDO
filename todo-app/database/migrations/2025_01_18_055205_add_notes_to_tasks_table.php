@@ -1,23 +1,32 @@
 <?php
 
-namespace App\Models;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-
-class Task extends Model
+return new class extends Migration
 {
-    use HasFactory;
-
-    protected $fillable = ['description', 'priority', 'notes']; // Agrega 'notes'
-
-    public function user()
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
     {
-        return $this->belongsTo(User::class);
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->text('notes')->nullable()->after('priority');
+        });
     }
 
-    public function tags()
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
     {
-        return $this->belongsToMany(Tag::class);
+        Schema::table('tasks', function (Blueprint $table) {
+            $table->dropColumn('notes');
+        });
     }
-}
+};
