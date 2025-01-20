@@ -65,7 +65,7 @@ class TaskController extends Controller
             'description' => 'required|max:255',
             'priority'    => 'required|in:baja,media,alta',
             'tags'        => 'nullable|array',
-            'notes'       => 'nullable|string', // Agrega validación para notes
+            'notes'       => 'nullable|string', 
         ]);
     
         $task->description = $request->description;
