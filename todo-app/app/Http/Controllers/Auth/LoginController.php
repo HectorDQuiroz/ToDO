@@ -21,19 +21,19 @@ class LoginController extends Controller
 
     public function username()
     {
-        return 'login';
+        return 'name';
     }
+
     protected function validateLogin(Request $request)
     {
         $request->validate([
-            $this->username() => 'required|string',
+            'login' => 'required|string', 
             'password' => 'required|string',
         ]);
     }
 
     protected function attemptLogin(Request $request)
     {
-        // Intenta con el email primero
         $credentials = [
             'email' => $request->login,
             'password' => $request->password,
@@ -43,9 +43,8 @@ class LoginController extends Controller
             return true;
         }
 
-        // Si falla, intenta con el nombre de usuario
         $credentials = [
-            'username' => $request->login,
+            'name' => $request->login,
             'password' => $request->password,
         ];
 
