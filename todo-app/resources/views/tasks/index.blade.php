@@ -45,19 +45,25 @@
                     </div>
 
                     <div class="btn-group">
-                        <form action="{{ route('tasks.complete', $task) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('PATCH')
-                            <button type="submit" class="btn btn-sm {{ $task->completed ? 'btn-warning' : 'btn-success' }} me-2">
-                                {{ $task->completed ? 'Pendiente' : 'Completar' }}
-                            </button>
-                        </form>
-                        <a href="{{ route('tasks.edit', ['task' => $task->id]) }}" class="btn btn-sm btn-secondary me-2">Editar</a>
-                        <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
-                        </form>
+                        <div>
+                            <form action="{{ route('tasks.complete', $task) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('PATCH')
+                                <button type="submit" class="btn btn-sm me-2 {{ $task->completed ? 'btn-warning' : 'btn-success' }}">
+                                    {{ $task->completed ? 'Pendiente' : 'Completar' }}
+                                </button>
+                            </form>
+                        </div>
+                        <div>
+                            <a href="{{ route('tasks.edit', ['task' => $task->id]) }}" class="btn btn-sm btn-secondary me-2">Editar</a>
+                        </div>
+                        <div>
+                            <form action="{{ route('tasks.destroy', $task) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                            </form>
+                        </div>
                     </div>
                     @if ($task->notes)
                     <div class="mt-2">
