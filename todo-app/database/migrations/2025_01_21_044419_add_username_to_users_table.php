@@ -6,27 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 class AddUsernameToUsersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->string('username')->unique()->after('name'); // Asegúrate de que la columna sea 'unique'
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColumn('username');
         });
     }
 }
