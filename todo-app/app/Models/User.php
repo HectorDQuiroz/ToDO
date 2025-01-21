@@ -17,10 +17,13 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    // app/Models/User.php
+
     protected $fillable = [
         'name',
         'email',
         'password',
+        'username',
     ];
 
     /**
